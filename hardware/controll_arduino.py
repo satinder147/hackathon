@@ -11,9 +11,13 @@ class Arduino:
 
 if(__name__=="__main__"):
     obj=Arduino()
-    obj.left()
-    time.sleep(5)
-    obj.right()
+    while 1:
+        if(int(input())==1):
+            obj.left()
+        else:
+            obj.right()
+        time.sleep(2)
+    #obj.right()
 
     
 
