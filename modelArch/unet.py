@@ -25,8 +25,10 @@ class Unet(nn.Module):
         block =nn.Sequential(
             nn.Conv2d(inp,out,k,padding=1),
             nn.ReLU(inplace=True),
+            torch.nn.Dropout2d(p=0.5, inplace=True)
             nn.Conv2d(out,out,k,padding=1),
             nn.ReLU(inplace=True),
+            torch.nn.Dropout2d(p=0.5, inplace=True)
         )
         return block
 
