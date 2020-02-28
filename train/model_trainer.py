@@ -69,7 +69,8 @@ def init(*args,**kwargs):
         
     device=torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print("using ",device)
-    #summary(net,input_size=(3,256,256))
+    net.to(device)
+    summary(net,input_size=(3,256,256))
     
     size=len(data)
     train_size=math.floor(train_percent*size)
@@ -84,7 +85,7 @@ def init(*args,**kwargs):
     #writer.add_image('images',grid,0)
     #writer.add_graph(net,img)
     #writer.close()
-    net.to(device)
+    
 
 def validation(**kwargs):
 
