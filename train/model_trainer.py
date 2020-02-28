@@ -10,10 +10,10 @@ sys.path.append('')
 import torch.nn as nn
 import torch.optim as optim
 from modelArch.unet import Unet
-from modelArch.cnn import Cnn
+#from modelArch.cnn import Cnn
 from torchsummary import summary
-from dataLoader.dataLoader_unet import load
-from dataLoader.dataloader_cnn import load_cnn
+from dataLoader.dataloader_unet import load
+#from dataLoader.dataloader_cnn import load_cnn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 

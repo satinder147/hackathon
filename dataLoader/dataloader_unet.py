@@ -15,8 +15,8 @@ class load(Dataset):
         self.width=kwargs["width"]
         self.height=kwargs["height"]
         self.samples=[]
-        self.path1="../data/Segmentation2/img/"
-        self.path2="../data/Segmentation2/mask/"
+        self.path1="Segmentation2/img/"
+        self.path2="Segmentation2/mask/"
         img_folder=os.listdir(self.path1)
         print(img_folder)
         for i in tqdm(img_folder):
