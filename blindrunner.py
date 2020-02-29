@@ -6,7 +6,7 @@ from unet import Models
 from keras.preprocessing.image import img_to_array
 import numpy as np
 from scipy import stats
-from hardware.controll_arduino import Arduino
+#from hardware.controll_arduino import Arduino
 from collections import deque
 '''
 
@@ -19,11 +19,11 @@ edges=cv2.dilate(edges,None,iterations=3)
 cv2.imshow("ds",edges)
 cv2.waitKey(0)
 '''
-ard=Arduino()
+#ard=Arduino()
 model=Models(256,256,3)
 model=model.arch3()
 model.load_weights("segmentation.MODEL")
-cap=cv2.VideoCapture("/home/satinder/Desktop/hackathon/hackathon/data/videos/3.mp4")
+cap=cv2.VideoCapture("/home/satinder/Desktop/hackathon/hackathon/data/videos/1.mp4")
 deq=deque(maxlen=10)
 def lane(lines):
 
@@ -93,7 +93,7 @@ while 1:
     t,pre=cv2.threshold(pre,200,255,cv2.THRESH_BINARY)
     pre=cv2.dilate(pre,None,iterations=2)
     pre=cv2.erode(pre,None,iterations=2)
-    pre=cv2.dilate(pre,None,iterations=4)
+    pre=cv2.dilate(pre,None,iterations=2)
     lines=cv2.HoughLinesP(pre,1,np.pi/180,50,maxLineGap=100,minLineLength=5)
     left=[]
     right=[]
@@ -172,11 +172,11 @@ while 1:
     d3=side(person[0],person[1],x2,y2,upper[0],upper[1]) #left
     lanee=area(d2,d1,d3)
     if(lanee=="offroad->left" and n%60==0):
-        ard.right()
+        pass#ard.right()
     elif(lanee=="right region" and n%60==0):
-        ard.left()
+        pass#ard.left()
     elif(lanee=="offroad->right" and n%60==0):
-        ard.left()
+        pass#ard.left()
     cv2.putText(frame2, lanee, (20,20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
     cv2.line(frame2,lower,upper,(0,255,0),2)
     cv2.line(frame2,(int(x1),y1),upper,(255,0,255),2) #right
@@ -187,8 +187,6 @@ while 1:
     if cv2.waitKey(1) and 0xFF==ord('q'):
         break
 
-    
-    #if(lanee=="")
     
 
     
